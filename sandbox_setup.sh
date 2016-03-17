@@ -8,7 +8,7 @@ fi
 rm -rf sandbox
 ~/.composer/vendor/bin/laravel new sandbox
 cd sandbox
-llum package AcachaSocialite
+llum package AcachaSocialiteDev
 #php artisan make:auth
 #touch database/database.sqlite
 
