@@ -9,8 +9,14 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 
+/**
+ * Class SocialAuthController
+ * @package Acacha\Socialite\Http\Controllers\Auth
+ */
 class SocialAuthController extends Controller
 {
+    use AppNamespaceDetectorTrait;
+
     /**
      * Redirect the user to the Provider authentication page.
      *
@@ -42,18 +48,19 @@ class SocialAuthController extends Controller
     }
 
     /**
-     * Return user if exists; create and return if doesn't
+     * Find or create user.
      *
      * @param $githubUser
-     * @return User
+     * @return mixed
      */
     private function findOrCreateUser($githubUser)
     {
-        if ($authUser = User::where('github_id', $githubUser->id)->first()) {
+        $user = $this->getAppNamespace(). "User";
+        if ($authUser = $user::where('github_id', $githubUser->id)->first()) {
             return $authUser;
         }
 
-        return User::create([
+        return $user::create([
             'name' => $githubUser->name,
             'email' => $githubUser->email,
             'github_id' => $githubUser->id,
