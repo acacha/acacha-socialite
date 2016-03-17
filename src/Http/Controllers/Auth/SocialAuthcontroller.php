@@ -2,12 +2,12 @@
 
 namespace Acacha\Socialite\Http\Controllers\Auth;
 
+use Acacha\Socialite\Http\Controllers\Controller;
 use Exception;
 
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
-use App\User;
 
 class SocialAuthController extends Controller
 {
