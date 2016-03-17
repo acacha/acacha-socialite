@@ -11,7 +11,6 @@ use Acacha\Socialite\Facades\AcachaSocialite;
  */
 class AcachaSocialiteServiceProvider extends ServiceProvider
 {
-    use AppNamespaceDetectorTrait;
 
     /**
      * Register the application services.
@@ -61,6 +60,14 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
     }
 
     /**
+     * Publish SocialAuth Controller.
+     */
+    private function publishSocialAuthController()
+    {
+        $this->publishes(AdminLTE::socialAuthController(), 'adminlte');
+    }
+
+    /**
      * Define the AcachaSocialite routes.
      */
     protected function defineRoutes()
@@ -68,7 +75,7 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
         if (!$this->app->routesAreCached()) {
             $router = app('router');
 
-            $router->group(['namespace' => $this->getAppNamespace().'Http\Controllers'], function () {
+            $router->group(['namespace' => 'Acacha\Socialite\Http\Controllers'], function () {
                 require __DIR__.'/../Http/routes.php';
             });
         }

@@ -22,17 +22,17 @@ class AcachaSocialite
     }
 
 
-//    /**
-//     * Home controller copy path.
-//     *
-//     * @return array
-//     */
-//    public function homeController()
-//    {
-//        return [
-//            ACACHASOCIALITE_PATH.'/src/stubs/HomeController.stub' => app_path('Http/Controllers/HomeController.php'),
-//        ];
-//    }
+    /**
+     * SocialAuth controller copy path.
+     *
+     * @return array
+     */
+    public function socialAuthController()
+    {
+        return [
+            ACACHASOCIALITE_PATH.'/src/stubs/SocialAuthController.stub' => app_path('Http/Controllers/HomeController.php'),
+        ];
+    }
 //
 //    /**
 //     * Auth controller copy path.

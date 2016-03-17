@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Acacha\Socialite\Http\Controllers\Auth;
 
 use Exception;
 
