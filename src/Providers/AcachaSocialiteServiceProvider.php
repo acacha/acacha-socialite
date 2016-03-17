@@ -2,7 +2,6 @@
 
 namespace Acacha\Socialite\Providers;
 
-use Acacha\Socialite\OAuthIdentity;
 use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Support\ServiceProvider;
 use Acacha\Socialite\Facades\AcachaSocialite;
@@ -23,7 +22,7 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
             define('ACACHASOCIALITE_PATH', realpath(__DIR__.'/../../'));
         }
 
-        $this->configureOAuthIdentitiesTable();
+//        $this->configureOAuthIdentitiesTable();
 
         $this->app->bind('AcachaSocialite', function () {
             return new \Acacha\Socialite\AcachaSocialite();
@@ -35,7 +34,7 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
      */
     protected function configureOAuthIdentitiesTable()
     {
-        OAuthIdentity::configureTable($this->app['config']['eloquent-oauth.table']);
+//        OAuthIdentity::configureTable($this->app['config']['eloquent-oauth.table']);
     }
 
     /**
@@ -44,11 +43,21 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
     public function boot()
     {
         //TODO: doctrine/dbal install for updating fields with migrations
+
+        $this->publishTests();
+
         $this->app->booted(function () {
             $this->defineRoutes();
         });
 
+    }
 
+    /**
+     * Publish package tests to Laravel project.
+     */
+    private function publishTests()
+    {
+        $this->publishes(AcachaSocialite::tests(), 'acachasocialite');
     }
 
     /**

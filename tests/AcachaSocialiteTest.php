@@ -12,34 +12,39 @@ class AcachaSocialiteTest extends TestCase
 
     use DatabaseMigrations;
 
-    /**
-     * Test Landing Page.
-     *
-     * @return void
-     */
-    public function testLandingPage()
+    protected $githubRedirectURL;
+
+    public function setUp()
     {
-        $this->visit('/')
-             ->see('Acacha')
-             ->see('adminlte-laravel')
-             ->see('Pratt');
+        $this->githubRedirectURL = "https://github.com/login/oauth/authorize";
     }
 
     /**
-     * Test Landing Page.
+     * Test TODO.
      *
      * @return void
      */
-    public function testLandingPageWithUserLogged()
+    public function testRoutesAreInstalled()
     {
-        $user = factory(App\User::class)->create();
-
-        $this->actingAs($user)
-            ->visit('/')
-            ->see('Acacha')
-            ->see('adminlte-laravel')
-            ->see('Pratt')
-            ->see($user->name);
+        $this->visit('/auth/github')
+            ->assertRedirectedTo($this->githubRedirectURL);
     }
+
+//    /**
+//     * Test Landing Page.
+//     *
+//     * @return void
+//     */
+//    public function testLandingPageWithUserLogged()
+//    {
+//        $user = factory(App\User::class)->create();
+//
+//        $this->actingAs($user)
+//            ->visit('/')
+//            ->see('Acacha')
+//            ->see('adminlte-laravel')
+//            ->see('Pratt')
+//            ->see($user->name);
+//    }
 
 }
