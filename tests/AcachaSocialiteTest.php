@@ -1,22 +1,19 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 /**
- * Class AcachaSocialiteTest
+ * Class AcachaSocialiteTest.
  */
 class AcachaSocialiteTest extends TestCase
 {
-
     use DatabaseMigrations;
 
     protected $githubRedirectURL;
 
     public function setUp()
     {
-        $this->githubRedirectURL = "https://github.com/login/oauth/authorize";
+        $this->githubRedirectURL = 'https://github.com/login/oauth/authorize';
     }
 
     /**
@@ -29,5 +26,4 @@ class AcachaSocialiteTest extends TestCase
         $this->visit('/auth/github')
             ->assertRedirectedTo($this->githubRedirectURL);
     }
-
 }

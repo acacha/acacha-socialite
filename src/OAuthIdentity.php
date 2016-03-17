@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
  * @property $id
- *
  */
 class OAuthIdentity extends Eloquent
 {

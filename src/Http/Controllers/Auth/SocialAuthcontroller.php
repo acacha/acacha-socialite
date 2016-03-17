@@ -4,14 +4,12 @@ namespace Acacha\Socialite\Http\Controllers\Auth;
 
 use Acacha\Socialite\Http\Controllers\Controller;
 use Exception;
-
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 
 /**
- * Class SocialAuthController
- * @package Acacha\Socialite\Http\Controllers\Auth
+ * Class SocialAuthController.
  */
 class SocialAuthController extends Controller
 {
@@ -55,7 +53,7 @@ class SocialAuthController extends Controller
      */
     private function findOrCreateUser($githubUser)
     {
-        $user = $this->getAppNamespace(). "User";
+        $user = $this->getAppNamespace().'User';
         if ($authUser = $user::where('github_id', $githubUser->id)->first()) {
             return $authUser;
         }
@@ -64,7 +62,7 @@ class SocialAuthController extends Controller
             'name' => $githubUser->name,
             'email' => $githubUser->email,
             'github_id' => $githubUser->id,
-            'avatar' => $githubUser->avatar
+            'avatar' => $githubUser->avatar,
         ]);
     }
 }

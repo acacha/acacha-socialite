@@ -25,5 +25,8 @@
   },
   "autoload": {
     "psr-4": {"Acacha\\Socialite\\": "src"}
+  },
+  "scripts": {
+    "fix": "php-cs-fixer fix"
   }
 }

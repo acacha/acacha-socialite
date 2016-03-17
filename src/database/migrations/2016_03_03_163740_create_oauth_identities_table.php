@@ -4,20 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * Class CreateOauthIdentitiesTable
+ * Class CreateOauthIdentitiesTable.
  */
 class CreateOauthIdentitiesTable extends Migration
 {
-
     /**
-     * The authentication service providers table name
+     * The authentication service providers table name.
      *
      * @var string
      */
     protected $authenticationProvidersTable;
 
     /**
-     * The users table name
+     * The users table name.
      *
      * @var string
      */
@@ -25,9 +24,8 @@ class CreateOauthIdentitiesTable extends Migration
 
     /**
      * CreateOauthIdentitiesTable constructor.
-     *
      */
-    public function __construct( )
+    public function __construct()
     {
         $this->authenticationProvidersTable = Config::get('acacha-socialite.table');
         $model = Config::get('acacha-socialite.model');
@@ -35,7 +33,7 @@ class CreateOauthIdentitiesTable extends Migration
     }
 
     /**
-     * Migration up
+     * Migration up.
      */
     public function up()
     {
@@ -48,19 +46,18 @@ class CreateOauthIdentitiesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create($this->getPivotTableName(), function(Blueprint $table)
-        {
-            $table->integer(str_singular($this->authenticationProvidersTable) . '_id')->unsigned()->index();
-            $table->foreign(str_singular($this->authenticationProvidersTable) . '_id')->references('id')
+        Schema::create($this->getPivotTableName(), function (Blueprint $table) {
+            $table->integer(str_singular($this->authenticationProvidersTable).'_id')->unsigned()->index();
+            $table->foreign(str_singular($this->authenticationProvidersTable).'_id')->references('id')
                 ->on($this->authenticationProvidersTable)->onDelete('cascade');
-            $table->integer(str_singular($this->usersTable) . '_id')->unsigned()->index();
-            $table->foreign(str_singular($this->usersTable) . '_id')->references('id')->on($this->usersTable)
+            $table->integer(str_singular($this->usersTable).'_id')->unsigned()->index();
+            $table->foreign(str_singular($this->usersTable).'_id')->references('id')->on($this->usersTable)
                 ->onDelete('cascade');
         });
     }
 
     /**
-     * Migration down
+     * Migration down.
      */
     public function down()
     {
@@ -87,9 +84,10 @@ class CreateOauthIdentitiesTable extends Migration
     {
         $tables = [
             strtolower($this->authenticationProvidersTable),
-            strtolower($this->usersTable)
+            strtolower($this->usersTable),
         ];
         sort($tables);
+
         return $tables;
     }
 }

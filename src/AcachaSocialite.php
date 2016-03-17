@@ -7,7 +7,6 @@ namespace Acacha\Socialite;
  */
 class AcachaSocialite
 {
-
     /**
      * Tests copy path.
      *
@@ -20,7 +19,6 @@ class AcachaSocialite
             ACACHASOCIALITE_PATH.'/phpunit.xml' => base_path('phpunit.xml'),
         ];
     }
-
 
     /**
      * SocialAuth controller copy path.
@@ -45,5 +43,4 @@ class AcachaSocialite
             ACACHASOCIALITE_PATH.'/src/database/migrations' => base_path('database/migrations'),
         ];
     }
-
 }

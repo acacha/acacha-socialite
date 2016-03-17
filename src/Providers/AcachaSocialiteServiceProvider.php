@@ -2,7 +2,6 @@
 
 namespace Acacha\Socialite\Providers;
 
-use Illuminate\Console\AppNamespaceDetectorTrait;
 use Illuminate\Support\ServiceProvider;
 use Acacha\Socialite\Facades\AcachaSocialite;
 
@@ -11,13 +10,12 @@ use Acacha\Socialite\Facades\AcachaSocialite;
  */
 class AcachaSocialiteServiceProvider extends ServiceProvider
 {
-
     /**
      * Register the application services.
      */
     public function register()
     {
-        if (!defined('ACACHASOCIALITE_PATH')) {
+        if (! defined('ACACHASOCIALITE_PATH')) {
             define('ACACHASOCIALITE_PATH', realpath(__DIR__.'/../../'));
         }
 
@@ -29,11 +27,11 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure table name of eloquent model OAuthIdentity
+     * Configure table name of eloquent model OAuthIdentity.
      */
     protected function configureOAuthIdentitiesTable()
     {
-//        OAuthIdentity::configureTable($this->app['config']['eloquent-oauth.table']);
+        //        OAuthIdentity::configureTable($this->app['config']['eloquent-oauth.table']);
     }
 
     /**
@@ -41,14 +39,12 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $this->publishTests();
         $this->publishMigrations();
 
         $this->app->booted(function () {
             $this->defineRoutes();
         });
-
     }
 
     /**
@@ -67,14 +63,12 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
         $this->publishes(AcachaSocialite::migrations(), 'acachasocialite');
     }
 
-
-
     /**
      * Define the AcachaSocialite routes.
      */
     protected function defineRoutes()
     {
-        if (!$this->app->routesAreCached()) {
+        if (! $this->app->routesAreCached()) {
             $router = app('router');
 
             $router->group(['namespace' => 'Acacha\Socialite\Http\Controllers'], function () {
