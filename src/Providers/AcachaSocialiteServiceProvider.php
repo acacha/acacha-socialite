@@ -41,9 +41,9 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //TODO: doctrine/dbal install for updating fields with migrations
 
         $this->publishTests();
+        $this->publishMigrations();
 
         $this->app->booted(function () {
             $this->defineRoutes();
@@ -60,12 +60,14 @@ class AcachaSocialiteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Publish SocialAuth Controller.
+     * Publish package tests to Laravel project.
      */
-    private function publishSocialAuthController()
+    private function publishMigrations()
     {
-        $this->publishes(AdminLTE::socialAuthController(), 'adminlte');
+        $this->publishes(AcachaSocialite::migrations(), 'acachasocialite');
     }
+
+
 
     /**
      * Define the AcachaSocialite routes.
